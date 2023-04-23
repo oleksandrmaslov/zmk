@@ -50,7 +50,7 @@ config SPI
     default y
 
 config ZMK_RGB_UNDERGLOW_EXT_POWER
-    default y
+    default y if !POWER_DOMAIN
 
 config ZMK_RGB_UNDERGLOW_BRT_MIN
     default 0
