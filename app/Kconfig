@@ -426,6 +426,7 @@ config ZMK_POWER_DOMAINS_DYNAMIC_DEFAULT
     bool "Enable assigning peripherals to the chosen default power domain"
     depends on ZMK_POWER_DOMAINS
     select PM_DEVICE_POWER_DOMAIN_DYNAMIC
+    select DEVICE_DEPS_DYNAMIC
 
 if ZMK_POWER_DOMAINS_DYNAMIC_DEFAULT
 
