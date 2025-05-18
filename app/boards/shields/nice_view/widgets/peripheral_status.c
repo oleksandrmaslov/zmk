@@ -109,12 +109,18 @@ ZMK_SUBSCRIPTION(widget_peripheral_status, zmk_split_peripheral_status_changed);
 int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     widget->obj = lv_obj_create(parent);
     lv_obj_set_size(widget->obj, 160, 68);
+
+    // Remove all built-in padding so children really sit at 0,0
+    lv_obj_set_style_pad_all(widget->obj, 0, 0);
+
     lv_obj_t *top = lv_canvas_create(widget->obj);
     lv_obj_align(top, LV_ALIGN_TOP_RIGHT, 0, 0);
     lv_canvas_set_buffer(top, widget->cbuf, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
 
     lv_obj_t *art = lv_img_create(widget->obj);
     lv_img_set_src(art, &qr); // Always use the QR image
+
+    // Align QR code flush to the bottom left
     lv_obj_align(art, LV_ALIGN_BOTTOM_LEFT, 0, 0);
 
     sys_slist_append(&widgets, &widget->node);
