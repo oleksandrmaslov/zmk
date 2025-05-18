@@ -109,22 +109,13 @@ ZMK_SUBSCRIPTION(widget_peripheral_status, zmk_split_peripheral_status_changed);
 int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     widget->obj = lv_obj_create(parent);
     lv_obj_set_size(widget->obj, 160, 68);
-
-    // Remove all built-in padding so children really sit at 0,0
-    lv_obj_set_style_pad_all(widget->obj, 0, 0);
-
     lv_obj_t *top = lv_canvas_create(widget->obj);
     lv_obj_align(top, LV_ALIGN_TOP_RIGHT, 0, 0);
     lv_canvas_set_buffer(top, widget->cbuf, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
 
     lv_obj_t *art = lv_img_create(widget->obj);
-    lv_img_set_src(art, &qr);
-
-    // Remove border just in case
-    lv_obj_set_style_border_width(widget->obj, 0, 0);
-
-    // Place QR code exactly at bottom left
-    lv_obj_set_pos(art, 0, 68 - 66); // x=0, y=2
+    lv_img_set_src(art, &qr); // Always use the QR image
+    lv_obj_align(art, LV_ALIGN_TOP_LEFT, 0, 0);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
