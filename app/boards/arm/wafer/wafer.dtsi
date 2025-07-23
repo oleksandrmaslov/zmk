@@ -23,6 +23,7 @@
         zephyr,flash = &flash0;
         zmk,physical-layout = &wafer_layout_phys;
         zmk,battery = &vbatt;
+        zephyr,display = &display;
     };
 
     default_transform: keymap_transform_0 {
@@ -82,6 +83,23 @@
     pinctrl-0 = <&i2c0_default>;
     pinctrl-1 = <&i2c0_sleep>;
     pinctrl-names = "default", "sleep";
+};
+
+display_spi: &spi0 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+
+    display: ls0xx@0 {
+        compatible = "sharp,ls0xx";
+        spi-max-frequency = <1000000>;
+        reg = <0>;
+        width = <160>;
+        height = <68>;
+    };
 };
 
 &spi1 {
