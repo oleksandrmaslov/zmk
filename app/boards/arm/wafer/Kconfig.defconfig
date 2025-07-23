@@ -1,0 +1,41 @@
+# Electronut Labs Papyr board configuration
+
+# Copyright (c) 2020 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+if BOARD_WAFER_LEFT
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+config ZMK_KEYBOARD_NAME
+    default "Wafer Keyboard"
+
+endif
+
+if BOARD_WAFER_LEFT || BOARD_WAFER_RIGHT
+
+config BOARD
+    default "wafer"
+
+config ZMK_SPLIT
+    default y
+
+if USB
+
+config USB_NRFX
+    default y
+
+config USB_DEVICE_STACK
+    default y
+
+endif # USB
+
+config BT_CTLR
+    default BT
+
+choice BOARD_WAFER_CHARGER_CURRENT
+    default BOARD_WAFER_CHARGER_CURRENT_100MA
+endchoice
+
+endif # BOARD_WAFER
+
