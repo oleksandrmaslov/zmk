@@ -384,6 +384,12 @@ config ZMK_BATTERY_REPORTING_FETCH_MODE_STATE_OF_CHARGE
 config ZMK_BATTERY_REPORTING_FETCH_MODE_LITHIUM_VOLTAGE
     bool "Lithium Voltage"
 
+config ZMK_BATTERY_REPORTING_FETCH_MODE_NPM1300_DIRECT
+    bool "nPM1300 VBAT (direct I2C)"
+    select I2C
+    help
+      Read VBAT using the nPM1300 internal ADC registers and map the voltage to a percentage.
+
 endchoice
 
 endif # ZMK_BATTERY_REPORTING
