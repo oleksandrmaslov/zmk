@@ -9,7 +9,7 @@
  *  - ADCGP0RESULTLSBS   offset 0x15: bits [1:0] of the 10-bit result
  */
 
-#include <zephyr/errno.h>
+#include <errno.h>
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
 #include <zephyr/devicetree.h>
